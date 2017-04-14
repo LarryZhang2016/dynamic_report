@@ -1,0 +1,50 @@
+\documentclass{report}
+\usepackage{graphicx}
+
+% Knitr environment configuration -------------------------------------
+%% Knitr root folder - cannot run together with other chunks
+<<echo=FALSE, error=FALSE, message=FALSE, warning=FALSE>>=
+	opts_knit$set(root.dir = "..")
+@
+
+%% Load the numbers from R cached results
+<<echo=FALSE, error=FALSE, message=FALSE, warning=FALSE>>=
+   load("./R/cache/list-of-numbers.RData")
+@
+
+ \begin{document}
+
+\title{A dynamic report}
+\vskip 0.5cm
+\author{Lingyun Zhang}
+
+
+\vskip 0.3cm
+
+\maketitle
+
+\date{}
+
+\section{Introduction}
+
+This section should have the {\bf context} and ....
+
+\section{Content}
+
+In 2015, the total Ford US sales was {\bf \Sexpr{format(my_list$Total, big.mark = ",")}} vehicles and the average sale was {\bf \Sexpr{format(round(my_list$Average, 0), big.mark = ",")}} vehicles per month ....
+
+We insert a graph here:
+\begin{figure}[htbp]
+	\caption{Ford US monthly sales in 2015}
+	\label{fig:001} 
+	\centering 
+	\includegraphics[scale=0.75]{../Figures/Ford_monthly_sale.pdf}
+\end{figure}
+
+\section{Conclusion}
+
+We insert a table here:
+\input{../Tables/Table1.tex}
+
+
+\end{document}
